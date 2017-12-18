@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+<div id="ajaxText">
+    jquery ajax显示的内容
+</div>
+<input id="runajax" type="button" value="获取外部信息内容">
+<input id="runpost" type="button" value="发送post请求">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function () {
+            $("#runajax").click(function () {
+                $("#ajaxText").load("test_dome.txt", function (responseTxt, statusTxt, xhr) {
+                    if (statusTxt == "success")
+                        alert("外部内容加载成功!");
+                    if (statusTxt == "error")
+                        alert("Error: " + xhr.status + ": " + xhr.statusText);
+                });
+            });
+            $("#runpost").click(function () {
+                $.post("test_dome.txt", {
+                    name: "菜鸟教程",
+                    url: "http://www.runoob.com"
+                }, function (data, status) {
+                    alert("数据：\n" + data + "\n状态" + status);
+                });
+            });
+        }
+    );
+</script>
+</body>
+</html>

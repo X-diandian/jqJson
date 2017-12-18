@@ -1,0 +1,70 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>jquery对html的操作</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style type="text/css">
+        .cssa{
+            width: 300px;
+            height:300px;
+            display: block;
+        }
+        .color{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<p>这是一个段落</p>
+<p>这是一个段落</p>
+<ul id="listItem" style="background-color: red">
+    <li class="italic">list item </li>
+    <li class="italic">list item </li>
+    <li>list item </li>
+    <li class="p">list item </li>
+</ul>
+<input id="addtext" type="button" value="添加文本">
+<input id="addlist" type="button" value="添加列表项">
+<input id="deletelist" type="button" value="删除元素">
+<input id="emptylist" type="button" value="清除元素">
+
+<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+    $(function () {
+            $("#addtext").click(
+                function () {
+                    var test="这是添加的文本";
+                    $("p").prepend(test);
+                }
+            );
+            $("#addlist").click(
+                function () {
+                    var test="<li>这是添加的文本</li>";
+                    $("#listItem").prepend(test);
+                }
+            );
+            $("#deletelist").click(function () {
+                $("#listItem").remove();
+            });
+            $("#deletelist").addClass("color cssa");
+            alert($("#deletelist").css("background-color","width"));
+        }
+    );
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>

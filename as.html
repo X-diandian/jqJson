@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>服务器</title>
+	</head>
+	<body>
+	<textarea id="Te" style="height: 400px;width: 400px">dd</textarea>
+
+	<input type="button" id="btn1" class="btn1" value="提交">
+	</body>
+	<script type="text/javascript">
+		window.onload=function () {
+			var obtn1=document.getElementById('btn1');
+			obtn1.onclick=function () {
+                if (window.XMLHttpRequest){
+                    var oAjax=new XMLHttpRequest();
+                }
+                else {
+                    var oAjax=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                oAjax.open('GET','test.txt',true);
+                oAjax.send();
+                oAjax.onreadystatechange=function () {
+					if(oAjax.readyState==4){
+					    if(oAjax.status==200){
+					        document.getElementById("Te").innerHTML=oAjax.responseText;
+						}
+						else {
+					        alert('失败');
+						}
+					}
+                }
+            }
+        };
+
+	</script>
+</html>

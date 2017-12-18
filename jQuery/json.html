@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>json</title>
+</head>
+<body>
+<h2>javaScript 创建json对象</h2>
+    <p id="jname"></p><br/>
+    网站地名:<span id="jurl"></span><br/>
+    网站slogan<span id="jslogan"></span><br/>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    var myjson,x,i,j='';
+    var myjson = {
+        "name":"网站",
+        "num":3,
+        "sites": [
+            { "name":"Google", "info":[ "Android", "Google 搜索", "Google 翻译" ] },
+            { "name":"Runoob", "info":[ "菜鸟教程", "菜鸟工具", "菜鸟微信" ] },
+            { "name":"Taobao", "info":[ "淘宝", "网购" ] }
+        ]
+    }
+    for(i in myjson.sites){
+        x+="<h2>"+myjson.sites[i].name+"</h2>";
+        for(j in myjson.sites[i].info){
+            x+=myjson.sites[i].info[j]+"</br>";
+        }
+    };
+    document.getElementById("jname").innerHTML = x;
+
+    var obj=JSON.parse('{ "name":"runoob", "alexa":10000, "site":"www.runoob.com" }');
+    document.getElementById("jurl").innerHTML=":"+obj.site;
+</script>
+</body>
+</html>

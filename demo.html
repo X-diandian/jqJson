@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Demo</title>
+    <style>
+        body, input, select, button, h1 {
+            font-size: 28px;
+            line-height:1;
+        }
+    </style>
+</head>
+<body>
+<h1>员工查询</h1>
+
+<label>请输入员工编号：</label>
+<input type="text" id="keyword" />
+<button id="search">查询</button>
+<p id="searchResult"></p>
+<h1>员工新建</h1>
+<label>请输入员工姓名：</label>
+<input type="text" id="staffName" /><br>
+<label>请输入员工编号：</label>
+<input type="text" id="staffNumber" /><br>
+<label>请选择员工性别：</label>
+<select id="staffSex">
+    <option>女</option>
+    <option>男</option>
+</select><br>
+<label>请输入员工职位：</label>
+<input type="text" id="staffJob" /><br>
+<button id="save">保存</button>
+<p id="createResult"></p>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script>
+<script>
+    //用jq调用ajax
+
+//    $(document).ready(function () {
+//        $("#search").click(function () {
+//            $.ajax({
+//                type:"GET",
+//                url:"server.php?number=" + $("#keyword").val(),
+//                dataType:"json",
+//                success:function (data) {
+//                    if
+//                }
+//            });
+//        });
+//    })
+
+
+    document.getElementById("search").onclick = function() {
+        var oAjax= new XMLHttpRequest();
+        oAjax.open("GET", "server.php?number=" + document.getElementById("keyword").value);
+        oAjax.send();
+        oAjax.onreadystatechange = function() {
+            if (oAjax.readyState===4) {
+                if (oAjax.status===200) {
+                    document.getElementById("searchResult").innerHTML = oAjax.responseText;
+                } else {
+                    alert("发生错误：" + oAjax.status);
+                }
+            }
+        }
+    }
+
+    document.getElementById("save").onclick = function() {
+        var oAjax= new XMLHttpRequest();
+        oAjax.open("POST", "server.php");
+        var data="name="+document.getElementById("staffName").value+
+                "&number="+document.getElementById("staffNumber").value+
+                "&sex="+document.getElementById("staffSex").value+
+                "&job="+document.getElementById("staffJob").value;
+        oAjax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        oAjax.send(data);
+        oAjax.onreadystatechange = function() {
+            if (oAjax.readyState===4) {
+                if (oAjax.status===200) {
+                    document.getElementById("createResult").innerHTML = request.responseText;
+
+                } else {
+                    alert("发生错误：" + request.status);
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

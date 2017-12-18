@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>jquery动作效果</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <style type="text/css">
+            .clearfix{
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="div1">这是一个可以隐藏滑动的光标</div>
+      <p id="oop" style="position: absolute;background: red;display: none;">这是一个光标</p>
+    <div class="clearfix"></div>
+
+    <div id="div2">
+        <input id="stop" type="button" value="停止滑动">
+        <input id="val">
+        <div id="flip">点我向下滑动版面</div>
+        <div id="panel" style="display: none;padding: 50px 0;">hello<b>world</b> </div>
+        <a id="runabaidu" href="baidu.com">跳转到百度</a>
+        <input id="valhref" type="button" value="获取A的href">
+        <input id="test1" type="button" value="获取新/旧文本">
+        <text>这是一个旧文本</text>
+        <input id="runajax" type="button" value="外部加载数据">
+        <div id="ajax_text">jquery 加载的内容</div>
+    </div>
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            $(function(){
+                $("#flip").click(function(){
+                        $("#panel").slideDown(5000).css('color','red').fadeIn(300);
+                        console.log("nihao");
+                    }
+                );
+                $("#stop").click(function () {
+                    $("#panel").stop();
+                });
+                $("#flip").click(function(){
+                    console.log("texr的值"+$("#panel").text());
+                    console.log("html的值"+$("#panel").html());
+                    console.log("val的值"+$("#val").val());
+                });
+                $("#valhref").click(function () {
+                    console.log($("#runabaidu").attr({
+                        "href":"baidummm.com",
+                        "name":"nihao"
+                    }));
+                });
+                $("#test1").click(function () {
+                        $("text").text(
+                            function (i,origText) {
+                                return "旧文本: " + origText +" 新文本: Hello world! (index: " + i + ")";
+                            }
+                        );
+                }
+                );
+                $("#runajax").click(function () {
+                    $("#ajax_text").load("test_dome.txt #p1");
+                });
+            });
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    </body>
+</html>
